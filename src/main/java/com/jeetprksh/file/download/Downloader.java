@@ -47,8 +47,10 @@ public class Downloader {
     executorService.invokeAll(downloadTasks);
     executorService.shutdown();
 
-    DownloadLogWriter logWriter = DownloadLogWriter.create(APP_NAME);
-    logWriter.writeDownloadLogFile(downloadLog);
+    if (allDownloads.getCreateLogs()) {
+      DownloadLogWriter logWriter = DownloadLogWriter.create(APP_NAME);
+      logWriter.writeDownloadLogFile(downloadLog);
+    }
   }
 
 }

@@ -7,9 +7,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class AllDownloads {
 
+  @SerializedName("createLogs")
+  @Expose
+  private Boolean createLogs;
+
   @SerializedName("downloadSets")
   @Expose
   private List<DownloadSet> downloadSets = new ArrayList<>();
+
+  public Boolean getCreateLogs() {
+    return createLogs;
+  }
+
+  public void setCreateLogs(Boolean createLogs) {
+    this.createLogs = createLogs;
+  }
 
   public List<DownloadSet> getDownloadSets() {
     return downloadSets;
