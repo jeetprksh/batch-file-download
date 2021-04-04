@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
-public class FileStore {
+class FileStore {
 
   private final Logger logger = Logger.getLogger(FileStore.class.getName());
 

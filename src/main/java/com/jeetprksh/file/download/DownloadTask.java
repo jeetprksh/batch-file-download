@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class DownloadTask implements Callable<Void> {
+class DownloadTask implements Callable<Void> {
 
   private final FileStore fileStore;
   private final List<String> fileUrls;

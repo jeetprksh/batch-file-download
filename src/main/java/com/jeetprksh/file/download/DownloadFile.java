@@ -7,7 +7,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.util.logging.Logger;
 
-public class DownloadFile {
+class DownloadFile {
 
   private final Logger logger = Logger.getLogger(DownloadFile.class.getName());
 

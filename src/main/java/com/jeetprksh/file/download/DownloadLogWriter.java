@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.Queue;
 import java.util.logging.Logger;
 
-public class DownloadLogWriter {
+class DownloadLogWriter {
 
   private final Logger logger = Logger.getLogger(DownloadLogWriter.class.getName());
 

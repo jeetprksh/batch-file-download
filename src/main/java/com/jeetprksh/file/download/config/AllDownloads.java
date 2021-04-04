@@ -1,4 +1,4 @@
-package com.jeetprksh.file.download;
+package com.jeetprksh.file.download.config;
 
 import java.util.ArrayList;
 import java.util.List;

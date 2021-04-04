@@ -2,7 +2,7 @@ package com.jeetprksh.file.download;
 
 import java.io.InputStream;
 
-public class DownloadedFile {
+class DownloadedFile {
 
   private final String fileName;
   private final InputStream fileContent;

@@ -1,10 +1,9 @@
 package com.jeetprksh.file.download;
 
-import com.google.gson.Gson;
-import org.apache.commons.io.IOUtils;
+import com.jeetprksh.file.download.config.AllDownloads;
+import com.jeetprksh.file.download.config.DownloadConfig;
+import com.jeetprksh.file.download.config.DownloadSet;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,13 +14,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class App {
+public class Downloader {
 
   public static String APP_NAME = "Batch File Downloader";
 
-  public static void main( String[] args ) throws Exception {
+  public static void main(String[] args) throws Exception {
 
-    AllDownloads allDownloads = readDownloadConfig();
+    AllDownloads allDownloads = DownloadConfig.createDefault();
     ExecutorService executorService = Executors.newFixedThreadPool(6);
     ConcurrentLinkedQueue<String> downloadLog = new ConcurrentLinkedQueue<>();
     List<DownloadTask> downloadTasks = new ArrayList<>();
@@ -52,8 +51,4 @@ public class App {
     logWriter.writeDownloadLogFile(downloadLog);
   }
 
-  private static AllDownloads readDownloadConfig() throws Exception {
-    InputStream stream = ClassLoader.getSystemResourceAsStream("downloads.json");
-    return new Gson().fromJson(IOUtils.toString(stream, StandardCharsets.UTF_8), AllDownloads.class);
-  }
 }
