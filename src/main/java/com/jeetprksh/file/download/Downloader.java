@@ -31,7 +31,7 @@ public class Downloader {
     downloader.start();
   }
 
-  private void start() throws InterruptedException, IOException {
+  public void start() throws InterruptedException, IOException {
     ExecutorService executorService = Executors.newFixedThreadPool(6);
     ConcurrentLinkedQueue<String> downloadLog = new ConcurrentLinkedQueue<>();
     List<DownloadTask> downloadTasks = new ArrayList<>();
