@@ -4,6 +4,7 @@ import com.jeetprksh.file.download.config.AllDownloads;
 import com.jeetprksh.file.download.config.DownloadConfig;
 import com.jeetprksh.file.download.config.DownloadSet;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,9 +19,19 @@ public class Downloader {
 
   public static String APP_NAME = "Batch File Downloader";
 
-  public static void main(String[] args) throws Exception {
+  private final AllDownloads allDownloads;
 
+  public Downloader(AllDownloads allDownloads) {
+    this.allDownloads = allDownloads;
+  }
+
+  public static void main(String[] args) throws Exception {
     AllDownloads allDownloads = DownloadConfig.createDefault();
+    Downloader downloader = new Downloader(allDownloads);
+    downloader.start();
+  }
+
+  private void start() throws InterruptedException, IOException {
     ExecutorService executorService = Executors.newFixedThreadPool(6);
     ConcurrentLinkedQueue<String> downloadLog = new ConcurrentLinkedQueue<>();
     List<DownloadTask> downloadTasks = new ArrayList<>();

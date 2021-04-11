@@ -6,7 +6,7 @@
 
   <groupId>com.jeetprksh.file.download</groupId>
   <artifactId>batch-file-download</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>batch-file-download</name>
   <url>http://www.example.com</url>
@@ -59,6 +59,29 @@
           <source>8</source>
           <target>8</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>fully.qualified.MainClass</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <appendAssemblyId>false</appendAssemblyId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
