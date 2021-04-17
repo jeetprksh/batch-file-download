@@ -3,6 +3,7 @@ package com.jeetprksh.file.download;
 import com.jeetprksh.file.download.config.AllDownloads;
 import com.jeetprksh.file.download.config.DownloadConfig;
 import com.jeetprksh.file.download.config.DownloadSet;
+import com.jeetprksh.file.download.config.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,42 +16,44 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class Downloader {
+public class BatchFileDownloader {
 
-  public static String APP_NAME = "Batch File Downloader";
+  private final static int DOWNLOAD_CHUNK_SIZE = 5;
+  private final static int THREAD_POOL_SIZE = 6;
 
   private final AllDownloads allDownloads;
 
-  public Downloader(AllDownloads allDownloads) {
+  public BatchFileDownloader(AllDownloads allDownloads) {
     this.allDownloads = allDownloads;
   }
 
   public static void main(String[] args) throws Exception {
     AllDownloads allDownloads = DownloadConfig.createDefault();
-    Downloader downloader = new Downloader(allDownloads);
-    downloader.start();
+    BatchFileDownloader batchFileDownloader = new BatchFileDownloader(allDownloads);
+    batchFileDownloader.start();
   }
 
   public void start() throws InterruptedException, IOException {
-    ExecutorService executorService = Executors.newFixedThreadPool(6);
+    ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
     ConcurrentLinkedQueue<String> downloadLog = new ConcurrentLinkedQueue<>();
     List<DownloadTask> downloadTasks = new ArrayList<>();
+    String appName = allDownloads.getAppName();
 
     for (DownloadSet downloadSet : allDownloads.getDownloadSets()) {
-      List<String> urls = downloadSet.getUrls();
+      List<File> files = downloadSet.getFiles();
       String folderName = downloadSet.getFolderName();
 
-      Collections.shuffle(urls);
+      Collections.shuffle(files);
 
       final AtomicInteger counter = new AtomicInteger(0);
-      Collection<List<String>> partitionedUrls = urls.stream()
-              .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / 5))
+      Collection<List<File>> partitionedUrls = files.stream()
+              .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / DOWNLOAD_CHUNK_SIZE))
               .values();
 
-      FileStore fileStore = FileStore.create(APP_NAME, folderName);
+      FileStore fileStore = FileStore.create(appName, folderName);
 
-      for (List<String> urlList : partitionedUrls) {
-        DownloadTask task = new DownloadTask(fileStore, urlList, downloadLog);
+      for (List<File> fileList : partitionedUrls) {
+        DownloadTask task = new DownloadTask(fileStore, fileList, downloadLog);
         downloadTasks.add(task);
       }
     }
@@ -59,7 +62,7 @@ public class Downloader {
     executorService.shutdown();
 
     if (allDownloads.getCreateLogs()) {
-      DownloadLogWriter logWriter = DownloadLogWriter.create(APP_NAME);
+      DownloadLogWriter logWriter = DownloadLogWriter.create(allDownloads.getAppName());
       logWriter.writeDownloadLogFile(downloadLog);
     }
   }

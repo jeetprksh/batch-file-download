@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class DownloaderTest
+public class BatchFileDownloaderTest
 {
     /**
      * Rigorous Test :-)

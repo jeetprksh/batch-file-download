@@ -65,7 +65,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>fully.qualified.MainClass</mainClass>
+              <mainClass>com.jeetprksh.file.download.BatchFileDownloader</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>

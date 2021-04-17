@@ -13,17 +13,18 @@ class DownloadFile {
 
   protected final HttpClient client = HttpClients.createDefault();
 
-  private final String imageUrl;
+  private final String fileUrl;
 
-  public DownloadFile(String imageUrl) {
-    this.imageUrl = imageUrl;
+  public DownloadFile(String fileUrl) {
+    this.fileUrl = fileUrl;
   }
 
   public DownloadedFile execute() throws Exception {
-    logger.info("Downloading file from " + this.imageUrl);
-    HttpGet get = new HttpGet(this.imageUrl);
+    logger.info("Downloading file from " + this.fileUrl);
+    HttpGet get = new HttpGet(this.fileUrl);
     CloseableHttpResponse response = (CloseableHttpResponse) client.execute(get);
-    String fileName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
-    return new DownloadedFile(fileName, response.getEntity().getContent());
+    String contentType = response.getHeader("content-type").getValue();
+    String fileExtension = contentType.split("/")[1];
+    return new DownloadedFile(fileExtension, response.getEntity().getContent());
   }
 }

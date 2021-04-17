@@ -1,32 +1,31 @@
 package com.jeetprksh.file.download.config;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class DownloadSet {
 
-  @SerializedName("urls")
+  @SerializedName("files")
   @Expose
-  private List<String> urls = null;
+  private final List<File> files;
+
   @SerializedName("folderName")
   @Expose
-  private String folderName;
+  private final String folderName;
 
-  public List<String> getUrls() {
-    return urls;
+  public DownloadSet(List<File> files, String folderName) {
+    this.files = files;
+    this.folderName = folderName;
   }
 
-  public void setUrls(List<String> urls) {
-    this.urls = urls;
+  public List<File> getFiles() {
+    return files;
   }
 
   public String getFolderName() {
     return folderName;
-  }
-
-  public void setFolderName(String folderName) {
-    this.folderName = folderName;
   }
 
 }

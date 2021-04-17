@@ -18,7 +18,8 @@ class FileStore {
   }
 
   public void createFile(DownloadedFile file) throws IOException {
-    File imgFile = new File(downloadDirectory.toPath() + "/" + sanitizeName(file.getFileName()));
+    String fileNameExt = file.getFileName() + "." + file.getExtension();
+    File imgFile = new File(downloadDirectory.toPath() + "/" + sanitizeName(fileNameExt));
     InputStream inputStream = file.getFileContent();
     FileUtils.copyInputStreamToFile(inputStream, imgFile);
     logger.info("File saved at " + imgFile.getAbsolutePath());

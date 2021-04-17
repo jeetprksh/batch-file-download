@@ -4,11 +4,13 @@ import java.io.InputStream;
 
 class DownloadedFile {
 
-  private final String fileName;
+  private String fileName;
+
+  private final String extension;
   private final InputStream fileContent;
 
-  public DownloadedFile(String fileName, InputStream fileContent) {
-    this.fileName = fileName;
+  public DownloadedFile(String extension, InputStream fileContent) {
+    this.extension = extension;
     this.fileContent = fileContent;
   }
 
@@ -16,8 +18,15 @@ class DownloadedFile {
     return fileContent;
   }
 
+  public String getExtension() {
+    return extension;
+  }
+
   public String getFileName() {
     return fileName;
   }
 
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
 }

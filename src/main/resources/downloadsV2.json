@@ -1,0 +1,14 @@
+{
+  "configVersion" : "2",
+  "createLogs": true,
+  "appName": "AppName",
+  "downloadSets": [
+    {
+      "files" : [{
+        "fileName" : "nameOfTheFile",
+        "url": "urlOfTheFile"
+      }],
+      "folderName" : "folderName"
+    }
+  ]
+}
