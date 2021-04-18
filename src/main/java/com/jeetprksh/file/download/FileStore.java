@@ -1,6 +1,7 @@
 package com.jeetprksh.file.download;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,8 @@ class FileStore {
   }
 
   public void createFile(DownloadedFile file) throws IOException {
-    String fileNameExt = file.getFileName() + "." + file.getExtension();
+    String fileNameExt = FilenameUtils.getExtension(file.getFileName()).isBlank() ?
+            file.getFileName() + "." + file.getExtension() : file.getFileName();
     File imgFile = new File(downloadDirectory.toPath() + "/" + sanitizeName(fileNameExt));
     InputStream inputStream = file.getFileContent();
     FileUtils.copyInputStreamToFile(inputStream, imgFile);
