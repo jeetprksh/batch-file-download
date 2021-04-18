@@ -1,5 +1,5 @@
 {
-  "configVersion" : "2",
+  "configVersion" : "v2",
   "createLogs": true,
   "appName": "AppName",
   "downloadSets": [

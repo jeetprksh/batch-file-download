@@ -1,7 +1,7 @@
 {
-  "configVersion" : "1",
+  "configVersion" : "v1",
   "createLogs": true,
-  "appName": "AppName",
+  "appName": "Batch File Downloader",
   "downloadSets": [
     {
       "urls" : ["url1", "url2"],
