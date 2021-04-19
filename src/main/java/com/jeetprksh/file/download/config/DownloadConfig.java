@@ -6,11 +6,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,14 +22,14 @@ public class DownloadConfig {
   }
 
   public static AllDownloads createDefault() throws Exception {
-    InputStream stream = ClassLoader.getSystemResourceAsStream("downloadsV1.json");
-    String config = IOUtils.toString(stream, StandardCharsets.UTF_8);
-    JsonObject configObject = JsonParser.parseString(config).getAsJsonObject();
+    InputStream stream = new FileInputStream(System.getProperty("user.home") + "\\Batch File Downloader\\config.json");
+    String configString = IOUtils.toString(stream, StandardCharsets.UTF_8);
+    JsonObject configObject = JsonParser.parseString(configString).getAsJsonObject();
 
     AllDownloads allDownloads;
     if (Objects.isNull(configObject.get("configVersion"))
             || configObject.get("configVersion").getAsString().equals("v2")) {
-      allDownloads = new Gson().fromJson(IOUtils.toString(stream, StandardCharsets.UTF_8), AllDownloads.class);
+      allDownloads = new Gson().fromJson(configString, AllDownloads.class);
     } else {
       List<DownloadSet> downloadSets = new ArrayList<>();
       JsonArray downloadSetObjects = configObject.getAsJsonArray("downloadSets");
