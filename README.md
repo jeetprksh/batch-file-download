@@ -2,6 +2,10 @@
 
 Batch File Download is a utility that allows the files to be downloaded from the internet from another Java program.
 
+There are two ways to use the utility:
+
+## 1. Programmatically
+
 Sample Java program to demonstrate download of the two files: 
 
 ```java
@@ -35,10 +39,50 @@ public class BatchDownloader {
 }
 ```
 
-Upon successful completion of the above program the file would be downloaded into the following path inside USER_HOME directory:
+Upon successful completion of the above program the files would be downloaded into the following path inside `USER_HOME` directory:
 
 `<USER_HOME>/TestApp/MyFolder`
 
-The logs, if set to `true`, will consist of all the link that got successfully downloaded and will be written into:
+## 2. Building the project Jar
+
+For this we need to specify the JSON configuration in a file placed on:
+
+`<USER_HOME>/Batch File Downloader/config.json`
+
+The configuration file will look like:
+
+```json
+{
+  "createLogs": true,
+  "appName": "TestApp",
+  "downloadSets": [
+    {
+      "files" : [{
+        "fileName" : "nameOfTheFile",
+        "url": "urlOfTheFile"
+      }],
+      "folderName" : "folderName"
+    }
+  ]
+}
+```
+
+Once the configuration file is in place we need to build the repository and build the Jar
+using following commands:
+
+```sh
+> git clone https://github.com/jeetprksh/batch-file-download.git
+> cd batch-file-download
+> mvn install
+> java -jar target/batch-file-download-1.0.0.jar
+```
+
+Upon successful completion of the above program the files would be downloaded into the following path inside `USER_HOME` directory:
+
+`<USER_HOME>/TestApp/folderName`
+
+## Download Logs
+
+In both cases the download logs, if set to `true`, will be generated and will consists of all the link that got successfully downloaded on the file:
 
 `<USER_HOME>/TestApp/downloadLog-yyyy-mm-dd.txt`
