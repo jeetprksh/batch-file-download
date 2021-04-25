@@ -26,4 +26,11 @@ public class File {
     return url;
   }
 
+  @Override
+  public String toString() {
+    return "File{" +
+            "fileName='" + fileName + '\'' +
+            ", url='" + url + '\'' +
+            '}';
+  }
 }

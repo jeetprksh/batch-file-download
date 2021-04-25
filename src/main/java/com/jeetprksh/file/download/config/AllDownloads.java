@@ -36,4 +36,12 @@ public class AllDownloads {
     return downloadSets;
   }
 
+  @Override
+  public String toString() {
+    return "AllDownloads{" +
+            "createLogs=" + createLogs +
+            ", appName='" + appName + '\'' +
+            ", downloadSets=" + downloadSets +
+            '}';
+  }
 }

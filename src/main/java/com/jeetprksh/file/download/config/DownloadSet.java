@@ -28,4 +28,11 @@ public class DownloadSet {
     return folderName;
   }
 
+  @Override
+  public String toString() {
+    return "DownloadSet{" +
+            "files=" + files +
+            ", folderName='" + folderName + '\'' +
+            '}';
+  }
 }
