@@ -1,5 +1,7 @@
 # Batch File Download
 
+![Java CI with Maven](https://github.com/jeetprksh/batch-file-download/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+
 Batch File Download is a utility that allows the files to be downloaded from the internet from another Java program.
 
 There are two ways to use the utility:
