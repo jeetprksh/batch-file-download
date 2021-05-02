@@ -45,8 +45,8 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/octocat/hello-world</url>
+      <name>GitHub jeetprksh batch-file-download</name>
+      <url>https://maven.pkg.github.com/jeetprksh/batch-file-download</url>
     </repository>
   </distributionManagement>
 
