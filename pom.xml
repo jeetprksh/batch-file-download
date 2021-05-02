@@ -6,7 +6,7 @@
 
   <groupId>com.jeetprksh.file.download</groupId>
   <artifactId>batch-file-download</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <name>batch-file-download</name>
   <url>http://www.example.com</url>
