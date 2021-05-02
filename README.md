@@ -8,7 +8,17 @@ There are two ways to use the utility:
 
 ## 1. Programmatically
 
-Sample Java program to demonstrate download of the two files: 
+Include this library in the project with:
+
+```xml
+<dependency>
+  <groupId>com.jeetprksh.file.download</groupId>
+  <artifactId>batch-file-download</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
+
+Sample Java program to demonstrate downloading of two files:
 
 ```java
 import com.jeetprksh.file.download.BatchFileDownloader;
