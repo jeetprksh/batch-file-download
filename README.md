@@ -35,8 +35,8 @@ public class BatchDownloader {
     boolean createLogs = true;            // false for not creating the logs for downloaded files
     String appName = "TestApp";           // name of your app from which the files are being downloaded
 
-    File fileOne = new File("memeOne.jpg", "https://i.imgur.com/pQ2VfHI.jpg");
-    File fileTwo = new File("memeTwo.jpg", "https://i.imgur.com/jTS4geM.jpeg");
+    File fileOne = new File("ImageOne.jpg", "https://i.imgur.com/pQ2VfHI.jpg");
+    File fileTwo = new File("ImageTwo.jpg", "https://i.imgur.com/jTS4geM.jpeg");
     List<File> files = Arrays.asList(fileOne, fileTwo);
     String folderName = "MyFolder";         // name of the folder in which the above two files will be saved once downloaded
 
